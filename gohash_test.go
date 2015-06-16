@@ -1,13 +1,11 @@
 package gohasha
 
-import
-(
+import (
 	"testing"
 )
 
-const
-(
-	MD5LENGTH = 32
+const (
+	MD5LENGTH   = 32
 	CRC64LENGTH = 16
 )
 
@@ -22,14 +20,14 @@ func TestDataMd5(t *testing.T) {
 	}
 }
 
-func TestDataCrc64 (t *testing.T) {
-	result, err := GoHasha(&GohashaOptions{Data: "foobar", Algorithm:"crc64"})
+func TestDataCrc64(t *testing.T) {
+	result, err := GoHasha(&GohashaOptions{Data: "foobar", Algorithm: "crc64"})
 	if err != nil {
 		t.Errorf("found error")
 	}
 
 	if len(result) != CRC64LENGTH {
-		t.Errorf("%d not match %d", len(result),CRC64LENGTH)
+		t.Errorf("%d not match %d", len(result), CRC64LENGTH)
 	}
 }
 
@@ -46,4 +44,3 @@ func TestReadFromFileCrc64(t *testing.T) {
 		t.Errorf("%d not match %d", len(result), CRC64LENGTH)
 	}
 }
-
