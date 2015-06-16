@@ -2,7 +2,7 @@
 Inspired by [hasha](https://github.com/sindresorhus/hasha)
 
 ## Install
-``` go get github.com/saromanov/gohasha
+``` go get github.com/saromanov/gohasha ```
 ## Usage
 ```go
 import
