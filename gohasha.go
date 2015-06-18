@@ -6,6 +6,8 @@ import (
 	"errors"
 	"hash/crc64"
 	"io/ioutil"
+	"io"
+	"bytes"
 )
 
 type GohashaOptions struct {
@@ -13,6 +15,8 @@ type GohashaOptions struct {
 	Filepath string
 	//Data from hashing
 	Data string
+	//Reader buffer
+	BufferReader io.Reader
 	//Now, algorithms can be md5 or crc32
 	Algorithm string
 }
@@ -29,6 +33,12 @@ func GoHasha(opt *GohashaOptions) (string, error) {
 		} else {
 			return crypt(string(data), opt.Algorithm), nil
 		}
+	}
+
+	if opt.BufferReader != nil {
+		buff := new(bytes.Buffer)
+		buff.ReadFrom(opt.Buffer)
+		return crypt(buff.String(), opt.Algorithm), nil
 	}
 	return "", errors.New("Can't find data for hashing")
 }
