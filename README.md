@@ -22,5 +22,11 @@ result, _ := gohasha.GoHasha(&gohasha.GohashaOptions{Filepath: "testfile", Algor
 fmt.Println(result) //returns hash for data from testfile with crc64
 ```
 
+## Parameters
+Data - data for hashing
+Filepath - path to file for hashing
+BufferReader - Buffer reader for hashing
+Algorithm - md5 or crc32
+
 ## Licence
 MIT
