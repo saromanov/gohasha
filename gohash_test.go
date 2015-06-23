@@ -44,3 +44,10 @@ func TestReadFromFileCrc64(t *testing.T) {
 		t.Errorf("%d not match %d", len(result), CRC64LENGTH)
 	}
 }
+
+func TestReadFromWebPage(t *testing.T) {
+	result, _ := GoHasha(&GohashaOptions{Webpage: "https://golang.org"})
+	if len(result) != MD5LENGTH {
+		t.Errorf("%d not match %d", len(result), CRC64LENGTH)
+	}
+}
