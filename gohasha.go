@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"io"
 	"bytes"
+	"net/http"
 )
 
 type GohashaOptions struct {
@@ -17,6 +18,9 @@ type GohashaOptions struct {
 	Data string
 	//Reader buffer
 	BufferReader io.Reader
+
+	//Get data from webpage
+	Webpage string
 	
 	//Now, algorithms can be md5 or crc32
 	Algorithm string
@@ -40,6 +44,19 @@ func GoHasha(opt *GohashaOptions) (string, error) {
 		buff := new(bytes.Buffer)
 		buff.ReadFrom(opt.BufferReader)
 		return crypt(buff.String(), opt.Algorithm), nil
+	}
+
+	if opt.Webpage != "" {
+		resp, err := http.Get(opt.Webpage)
+		if err != nil {
+			panic(err)
+		}
+		defer resp.Body.Close()
+		result, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			panic(err)
+		}
+		return crypt(string(result), opt.Algorithm), nil
 	}
 	return "", errors.New("Can't find data for hashing")
 }
