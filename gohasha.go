@@ -63,6 +63,7 @@ func GoHasha(opt *GohashaOptions) (string, error) {
 	return "", errors.New("Can't find data for hashing")
 }
 
+//Choose algorithms for crypt
 func crypt(data string, algorithm string) string {
 	if algorithm == "crc64" {
 		return crc64run(data)
