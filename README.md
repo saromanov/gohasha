@@ -29,6 +29,15 @@ fmt.Println(result) //returns hash for data from testfile with crc64
 * Filepath -  path to file for hashing
 * BufferReader - Buffer reader for hashing
 * Algorithm - md5, crc32 or adler32
+* HashingFunc - your hashing function
+Example:
+```go
+hashstr, _ := gohasha.GoHasha(&gohasha.GohashaOptions{Data: "Value",
+HashingFunc: function(str string)string{
+    //Just as example
+	return str
+}})
+```
 
 
 ## Licence
