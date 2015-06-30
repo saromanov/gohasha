@@ -31,6 +31,20 @@ func TestDataCrc64(t *testing.T) {
 	}
 }
 
+func TestUserFunction(t *testing.T) {
+	result, err := GoHasha(&GohashaOptions{Data: "foobar", HashingFunc: func(str string) string{
+		return str
+	}})
+	if err != nil {
+		t.Errorf("found error")
+	}
+
+	if result != "foobar" {
+		t.Errorf("%s not match %s", result, "foobar")
+	}
+
+}
+
 func TestReadFromFileMd5(t *testing.T) {
 	result, _ := GoHasha(&GohashaOptions{Filepath: "gohasha.go"})
 	if len(result) != MD5LENGTH {
