@@ -26,6 +26,9 @@ type GohashaOptions struct {
 
 	//Now, algorithms can be md5 or crc32
 	Algorithm string
+
+	//Your hashing function
+	HashingFunc func(string) string
 }
 
 //GoHasha return hash in string from string data or file
