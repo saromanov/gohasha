@@ -31,6 +31,18 @@ func TestDataCrc64(t *testing.T) {
 	}
 }
 
+func TestDataObject(t *testing.T) {
+	value := map[string]string{"Seven": "days"}
+	result, err := GoHasha(&GohashaOptions{Object:value, Algorithm: "crc64"})
+	if err != nil {
+		t.Errorf("found error")
+	}
+
+	if len(result) != CRC64LENGTH {
+		t.Errorf("%d not match %d", len(result), CRC64LENGTH)
+	}
+}
+
 func TestUserFunction(t *testing.T) {
 	result, err := GoHasha(&GohashaOptions{Data: "foobar", HashingFunc: func(str string) string{
 		return str
