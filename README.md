@@ -28,6 +28,7 @@ fmt.Println(result) //returns hash for data from testfile with crc64
 * Data - data for hashing
 * Filepath -  path to file for hashing
 * BufferReader - Buffer reader for hashing
+* Object - any object for hashing
 * Algorithm - md5, crc32 or adler32
 * HashingFunc - your hashing function
 Example:
