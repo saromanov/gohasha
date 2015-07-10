@@ -39,6 +39,9 @@ HashingFunc: function(str string)string{
 }})
 ```
 
+### gohasha.GoHasha(opt GohashaOptions)
+Return hashed data
+
 
 ## Licence
 MIT
