@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/md5"
 	"encoding/hex"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"hash/adler32"
@@ -20,7 +21,8 @@ type GohashaOptions struct {
 	Data string
 	//Reader buffer
 	BufferReader io.Reader
-
+	//Any data
+	Object interface{}
 	//Get data from webpage
 	Webpage string
 
@@ -63,6 +65,14 @@ func GoHasha(opt *GohashaOptions) (string, error) {
 			panic(err)
 		}
 		data = string(result)
+	}
+
+	if opt.Object != nil {
+		ser, err := json.Marshal(opt.Object)
+		if err != nil {
+			panic(err)
+		}
+		data = string(ser)
 	}
 
 	if data == "" {
